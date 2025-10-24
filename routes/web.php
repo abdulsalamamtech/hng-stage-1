@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::get('/artisan', function () {
     Artisan::call('db:seed');
     Artisan::call('optimize');
     Artisan::call('inspire');
+    return "Artisan commands executed successfully.";
 });
 
 Route::get('/fresh', function () {
@@ -35,4 +37,16 @@ Route::get('/fresh', function () {
     Artisan::call('db:seed');
     Artisan::call('optimize');
     Artisan::call('inspire');
+    return "Database refreshed successfully.";
+});
+
+
+Route::get('/run', function (Request $request) {
+    if (!$request->filled('query')) {
+        return "No query parameter provided.";
+    }
+    $query = $request->input('query');
+    Artisan::call($query);
+    Artisan::call('inspire');
+    return "command executed";
 });

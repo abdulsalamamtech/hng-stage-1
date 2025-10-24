@@ -13,7 +13,7 @@ class StringAnalyzerService
     public static function analyzeAndStore(string $value)
     {
         info('crating new string analyzer!');
-        $stringAnalyzer = StringAnalyzer::where('value', $value)->get()->exists();
+        $stringAnalyzer = StringAnalyzer::where('value', $value)->first();
         if($stringAnalyzer){
             abort(403, 'string value already exist!');
         }
