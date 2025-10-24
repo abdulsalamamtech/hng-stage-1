@@ -7,3 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+Route::get('/test', function () {
+    return [
+        "message" => "testing application..",
+        "time" => now()
+    ];
+});
