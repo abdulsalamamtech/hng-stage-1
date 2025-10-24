@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\StringAnalyzer;
+use Exception;
 use Illuminate\Support\Str;
 
 class StringAnalyzerService
@@ -11,6 +12,11 @@ class StringAnalyzerService
 
     public static function analyzeAndStore(string $value)
     {
+        info('crating new string analyzer!');
+        $stringAnalyzer = StringAnalyzer::where('value', $value)->get()->exists();
+        if($stringAnalyzer){
+            abort(403, 'string value already exist!');
+        }
         $id = hash('sha256', $value);
         return StringAnalyzer::create([
             'id' => $id,

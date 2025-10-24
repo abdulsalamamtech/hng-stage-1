@@ -14,6 +14,9 @@ Route::get('/user', function (Request $request) {
 // 1. Create/Analyze String
 Route::post('/strings', [StringAnalyzerController::class, 'store']);
 
+
+Route::get('/strings', [StringAnalyzerController::class, 'index']);
+
 // 2. Get Specific String
 // Route::get('/strings/{id}', [StringAnalyzerController::class, 'show']);
 Route::get('/strings/{string}', [StringAnalyzerController::class, 'show']);
