@@ -161,7 +161,7 @@ class StringAnalyzerController extends Controller
 
     public function destroy($string)
     {
-        $string = StringAnalyzer::where('string', $string)->firstOrFail();
+        $string = StringAnalyzer::where('value', $string)->firstOrFail();
         // Delete a specific string analyzer
         $string->delete();
         return response()->json([], 204);
