@@ -29,6 +29,8 @@ Then I test the project to see how it works.
 
 Thanks.
 
+-   Live endpoint: https://hngi13-backend-task-production.up.railway.app/api/strings
+
 ## Run the project locally
 
 ```sh
@@ -52,9 +54,7 @@ Thanks.
 
 ```
 
-###
-
-The endpoints I built.
+### The endpoints I built
 
 1. Create/Analyze String
 
@@ -284,6 +284,17 @@ Error Response:
 Success Response (204 No Content): (Empty response body)Error Responses:
 
     404 Not Found: String does not exist in the system
+
+## Submission
+
+For your submission, make use of the bot in the stage-1-backend channel by entering
+/stage-one-backend in the channel and submitting in the requested URLs.
+
+    Your API base URL: (https://hngi13-backend-task-production.up.railway.app/api/)
+    Your GitHub repo link: https://github.com/abdulsalamamtech/hng-stage-1
+    Your full name: Abdulsalam Abdulrahman
+    Your email: abdulsalamamtech@gmal.com
+    Stack: PHP/Laravel
 
 ## About Laravel
 
