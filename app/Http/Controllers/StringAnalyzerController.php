@@ -146,11 +146,38 @@ class StringAnalyzerController extends Controller
     public function store(Request $request, StringAnalyzerService $stringAnalyzerService)
     {
         // Validate and store a new string analyzer
+        // $validated = $request->validate([
+        //     'value' => 'required|string|unique:string_analyzers,value',
+        // ]);    
+
         $validated = $request->validate([
-            'value' => 'required|string|unique:string_analyzers,value',
+            'value' => 'required|string',
         ]);
-        $stringAnalyzer = StringAnalyzerService::analyzeAndStore($validated['value']);
+
+        // get data
+        $data = $request->only(['value']);
+        // if not filled return custom error response [missing value field 422]
+        if (!$request->filled('value')) {
+            return response()->json([
+                'message' => 'The value field is required.',
+                'errors' => [
+                    'value' => ['The value field is required.'],
+                ],
+            ], 422);
+        }
+        // when value exists [duplicate 409]
+        $dataExists = StringAnalyzer::where('value', $data['value'] ?? '')->exists();
+        if ($dataExists) {
+            return response()->json([
+                'message' => 'The value has already been taken.',
+                'errors' => [
+                    'value' => ['The value has already been taken.'],
+                ],
+            ], 409);
+        }
+        $stringAnalyzer = StringAnalyzerService::analyzeAndStore($data['value']);
         $properties = $stringAnalyzerService->getProperties($stringAnalyzer);
+        // return response with 201 created
         return response()->json([
             'id' => $stringAnalyzer->id,
             'value' => $stringAnalyzer->value,
@@ -181,8 +208,8 @@ class StringAnalyzerController extends Controller
         $dbQuery = StringAnalyzer::query();
         // split query item into array
         $queryItems = explode(' ', $request->input('query'));
-        foreach ($queryItems as $items){
-            $dbQuery->orWhereAny(['id', 'value', 'length', 'word_count'], 'LIKE', '%' . $items . '%');    
+        foreach ($queryItems as $items) {
+            $dbQuery->orWhereAny(['id', 'value', 'length', 'word_count'], 'LIKE', '%' . $items . '%');
         }
         // get all filtered data from request
         $filters = $this->checkFilters($request->query('query'));
@@ -235,7 +262,7 @@ class StringAnalyzerController extends Controller
         if (str_contains($query, 'single word') || str_contains($query, 'word count') || str_contains($query, 'count word')) {
             $filters['word_count'] = 1;
         }
-        
+
         return $filters;
-    }    
+    }
 }
