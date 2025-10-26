@@ -1,0 +1,18 @@
+POST https://hngi13-backend-task-production.up.railway.app/api/strings
+Content-Type: application/json
+
+{
+  "value": "newuser",
+}
+
+
+###
+
+DELETE https://hngi13-backend-task-production.up.railway.app/api/strings/PHP
+Content-Type: application/json
+
+{}
+
+###
+GET https://hngi13-backend-task-production.up.railway.app/api/strings
+Content-Type: application/json
