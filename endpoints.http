@@ -16,3 +16,18 @@ Content-Type: application/json
 ###
 GET https://hngi13-backend-task-production.up.railway.app/api/strings
 Content-Type: application/json
+
+
+### Get string by value
+GET http://127.0.0.1:8000/api/strings/PHP
+Content-Type: application/json
+
+
+
+### Post string by value
+POST http://127.0.0.1:8000/api/strings/
+Content-Type: application/json
+
+{
+  "value": "556"
+}

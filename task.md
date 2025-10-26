@@ -29,17 +29,17 @@ Success Response (201 Created):
 "id": "sha256_hash_value",
 "value": "string to analyze",
 "properties": {
-"length": 17,
-"is_palindrome": false,
-"unique_characters": 12,
-"word_count": 3,
-"sha256_hash": "abc123...",
-"character_frequency_map": {
-"s": 2,
-"t": 3,
-"r": 2,
-// ... etc
-}
+    "length": 17,
+    "is_palindrome": false,
+    "unique_characters": 12,
+    "word_count": 3,
+    "sha256_hash": "abc123...",
+    "character_frequency_map": {
+        "s": 2,
+        "t": 3,
+        "r": 2,
+        // ... etc
+    }
 },
 "created_at": "2025-08-27T10:00:00Z"
 }
